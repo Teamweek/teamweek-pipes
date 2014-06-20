@@ -36,7 +36,7 @@ module Teamweek
     end
 
     def push(provider, origin, foreign)
-      registrations[Flows::Push].fetch(provider).build_pipe(origin, foreign)
+      registrations[Flows::Push].fetch(provider).build(origin, foreign)
     end
 
     private
