@@ -28,7 +28,7 @@ module Teamweek
 
       def build(origin, foreign)
         Pipe.new(
-          origin_repository,
+          origin_repository(origin),
           get(origin, foreign) || foreign_repository
         ).extend(@flow)
       end
@@ -44,8 +44,8 @@ module Teamweek
         -> options { Action.new(action, options) } if action
       end
 
-      def origin_repository
-        -> options { Repositories.build(options) }
+      def origin_repository(origin)
+        -> options { Repositories.build(origin, options) }
       end
 
       def foreign_repository
