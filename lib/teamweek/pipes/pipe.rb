@@ -18,9 +18,21 @@ module Teamweek
       end
 
       def run(options)
-        data = source(source_options(options)).pull
-        destination(destination_options(options)).push(data)
+        data = pull_foreign(source_options(options))
+        push_options = destination_options(options)
+        push_options ? push_origin(push_options, data) : data
       end
+
+      private
+
+      def pull_foreign(options)
+        source(options).pull
+      end
+
+      def push_origin(options, data)
+        destination(options).push(data)
+      end
+
     end
   end
 end
