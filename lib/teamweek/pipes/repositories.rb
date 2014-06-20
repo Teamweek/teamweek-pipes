@@ -6,12 +6,27 @@ module Teamweek
     module Repositories
       extend self
 
-      def build(options)
-        Users.new(client(options[:workspace], options[:token], options[:uri]))
+      def build(origin, options)
+        origin_class(origin).new(build_client(options))
       end
 
-      def client(workspace, token, uri = nil)
-        Teamweek::Api::Client.new(workspace, token, base_uri: uri)
+      private
+
+      def build_client(options)
+        client.new(
+          options[:workspace],
+          options[:token],
+          base_uri: options[:uri]
+        )
+      end
+
+      def client
+        Teamweek::Api::Client
+      end
+
+      def origin_class(origin)
+        class_name = origin.to_s.capitalize
+        const_get(class_name)
       end
     end
   end
