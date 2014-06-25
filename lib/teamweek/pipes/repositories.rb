@@ -14,8 +14,9 @@ module Teamweek
 
       def build_client(options)
         client.new(
+          options[:http_client],
           options[:workspace],
-          options[:http_client]
+          base_uri: options[:uri]
         )
       end
 
