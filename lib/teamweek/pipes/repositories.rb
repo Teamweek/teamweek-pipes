@@ -1,32 +1,32 @@
 # coding: utf-8
 require 'teamweek-ruby'
-
 module Teamweek
   module Pipes
     module Repositories
       extend self
 
       def build(origin, options)
-        origin_class(origin).new(build_client(options))
+        Teamweek::Pipes::Repository.new(
+          build_client(options),
+          repositories[origin]
+        )
       end
 
       private
 
       def build_client(options)
-        client.new(
+        Teamweek::Api::Client.new(
           options[:http_client],
           options[:workspace],
           base_uri: options[:uri]
         )
       end
 
-      def client
-        Teamweek::Api::Client
-      end
-
-      def origin_class(origin)
-        class_name = origin.to_s.capitalize
-        const_get(class_name)
+      def repositories
+        {
+          users: -> (client, users) { client.import_users(users) },
+          projects: -> (client, projects) { client.import_projects(projects) }
+        }
       end
     end
   end
