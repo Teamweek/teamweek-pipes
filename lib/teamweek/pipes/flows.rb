@@ -19,24 +19,6 @@ module Teamweek
           options.fetch(:origin)
         end
       end
-
-      module Push
-        def source(options)
-          origin.call(options)
-        end
-
-        def source_options(options)
-          options.fetch(:origin)
-        end
-
-        def destination(options)
-          foreign.call(options)
-        end
-
-        def destination_options(options)
-          options.fetch(:foreign)
-        end
-      end
     end
   end
 end
