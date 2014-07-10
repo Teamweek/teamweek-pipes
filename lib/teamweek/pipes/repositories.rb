@@ -25,7 +25,8 @@ module Teamweek
       def repositories
         {
           users: -> (client, users) { client.import_users(users) },
-          projects: -> (client, projects) { client.import_projects(projects) }
+          projects: -> (client, projects) { client.import_projects(projects) },
+          tasks: -> (client, tasks) { client.import_tasks(tasks) }
         }
       end
     end

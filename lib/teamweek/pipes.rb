@@ -35,10 +35,6 @@ module Teamweek
       registrations[Flows::Pull].fetch(provider).build(origin, foreign)
     end
 
-    def push(provider, origin, foreign)
-      registrations[Flows::Push].fetch(provider).build(origin, foreign)
-    end
-
     private
 
     def build(options, flow, &block)
