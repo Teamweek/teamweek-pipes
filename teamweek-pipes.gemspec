@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Toggl OÜ']
   spec.email         = ['support@teamweek.com']
   spec.summary       = %q{Teamweek integrations.}
-  spec.homepage      = ''
+  spec.description   = 'Teamweek integrations'
+  spec.homepage      = 'https://github.com/teamweek/teamweek-pipes'
   spec.license       = 'MIT'
 
   spec.files         = ['lib/teamweek-pipes.rb']
